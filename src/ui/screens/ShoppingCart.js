@@ -2,14 +2,15 @@ import React, { Fragment } from 'react';
 import { StyleSheet, ScrollView, SafeAreaView, Text } from 'react-native';
 import StatusBar from '../components/StatusBar';  
 import AppBar from '../components/AppBar';
+import { colors, layoutStyles } from '../styles';
 
 export default function ShoppingCart() {
   return (
     <Fragment>
-      <StatusBar backgroundColor={"#772ea2"} barStyle="light-content" />
+      <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
       <AppBar title="Cart" isElevated={true}/>
-      <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView}>
+      <SafeAreaView style={layoutStyles.container}>
+        <ScrollView>
           <Text> 
             Vista del carrito de compras
           </Text>

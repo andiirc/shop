@@ -3,7 +3,7 @@ const colors = {
   dark: '#772ea2',
   fontLight: '#',
   fontDark: '#',
-  bgLight: '#',
+  bgLight: '#dcd6ea',
   bgDark: '#',
 }
 

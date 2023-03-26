@@ -1,7 +1,8 @@
 import axios from "axios";
+import { API_URL } from "../../../utils/constants";
 
 const api = axios.create({
-  baseURL: "https://fakestoreapi.com",
+  baseURL: API_URL,
 });
 
 export default api;

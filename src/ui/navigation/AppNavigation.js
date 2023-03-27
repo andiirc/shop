@@ -1,40 +1,48 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { BottomNavigation } from 'react-native-paper';
-import Products from '../screens/Products';
-import Favorites from '../screens/Favorites';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ShoppingCart from '../screens/ShoppingCart';
+import { StyleSheet } from 'react-native';
+import ProductStack from './ProductStack';
+import { colors } from '../styles';
+import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const HomeRoute = () => <Products></Products>
-
-const FavoritesRoute = () => <Favorites></Favorites>
-
-const ShoppingCartRoute = () => <ShoppingCart></ShoppingCart>
+const Tab = createBottomTabNavigator();
 
 export default function AppNavigation() {
 
-  const [index, setIndex] = useState(0);
-
-  const [routes] = useState([
-    { key: 'home', title: 'Products', focusedIcon: 'home', unfocusedIcon: 'home-outline'},
-    { key: 'favorites', title: 'Favorites', focusedIcon: 'hand-heart' },
-    { key: 'shoppingCart', title: 'Cart', focusedIcon: 'cart' },
-  ]);
-
-  const renderScene = BottomNavigation.SceneMap({
-    home: HomeRoute,
-    favorites: FavoritesRoute,
-    shoppingCart: ShoppingCartRoute,
-  });
-
-
+  
   return (
     <NavigationContainer>
-      <BottomNavigation
-        navigationState={{ index, routes }}
-        onIndexChange={setIndex}
-        renderScene={renderScene}
-      />
+      <Tab.Navigator  
+        screenOptions={{  
+          headerShown: false,
+          tabBarActiveBackgroundColor: colors.primary,
+          tabBarActiveTintColor: colors.dark,
+          tabBarLabelStyle: {
+            fontSize: 14,
+          },
+        }}
+      >
+        <Tab.Screen name="Home" component={ProductStack} 
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MIcon name="home" color={color} size={size} />
+            ),
+          }} 
+        />
+        <Tab.Screen name="Cart" component={ShoppingCart} 
+          options={{
+            tabBarIcon: ({ color, size }) => (
+              <MIcon name="cart" color={color} size={size} />
+            ),
+          }} 
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   )
 }
+
+
+
+

@@ -1,14 +1,23 @@
 import React from 'react'
 import { TouchableWithoutFeedback, StyleSheet, View, Text, Image } from 'react-native';
 import { colors } from '../../styles';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ListProduct(props) {
+  const navigation = useNavigation();
   const { products } = props;
+
+  const goDetail = (id) => {
+    navigation.push('detail', {id})
+  };
 
   return (
     <View style={styles.container}>
       { products.map((product) => (
-          <TouchableWithoutFeedback key={product.id} onPress={()=> console.log('ir al detalle')}>
+          <TouchableWithoutFeedback 
+            key={product.id} 
+            onPress={() => goDetail(product.id)}
+          >
           <View style={styles.containerProduct}>
             <View style={styles.product}>
               <Image style={styles.image} source={{ uri: product.image }} />
@@ -16,7 +25,7 @@ export default function ListProduct(props) {
                 {product.title} 
               </Text>
               <Text> {product.category}</Text>
-              <Text> {product.price}</Text>
+              <Text> € {product.price}</Text>
             </View>
         </View>
           </TouchableWithoutFeedback>
@@ -41,7 +50,6 @@ const styles = StyleSheet.create({
   product: {
     backgroundColor: colors.bgLight,
     padding:10,
-    marginBottom: 10,
     borderRadius: 5,
   },
   image: {
@@ -53,14 +61,3 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-
-// import { Card } from 'react-native-paper'; 
-// <Card style={styles.product}>
-//     <Card.Content>
-//       <Image style={styles.image} source={{ uri: product.image }} />
-//       <Text variant="titleLarge">{product.title}</Text>
-//       <Text variant="bodyMedium">{product.category}</Text>
-//       <Text variant="bodyMedium">{product.price}</Text>
-//     </Card.Content>
-// </Card>

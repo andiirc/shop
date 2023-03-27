@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { ScrollView, SafeAreaView, Text } from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 import StatusBar from '../components/StatusBar';  
 import AppBar from '../components/AppBar';
 import { colors, layoutStyles } from '../styles';
@@ -10,13 +10,13 @@ import ListProduct from '../components/Product/ListProduct';
 export default function Products() {
 
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => { 
-      setProducts([])
       const resp = await getProducts();
-      console.log(resp);
-      setProducts(resp)
+      setProducts(resp);
+      setLoading(false);
     })();
   }, [])
 
@@ -28,7 +28,7 @@ export default function Products() {
     <Fragment>
       <StatusBar backgroundColor={colors.dark} barStyle="light-content" />
       <AppBar title="Products" icon="cart-outline" isElevated={true} viewFn={viewCartFn} />
-      { products.length === 0 ? (
+      { loading ? (
         <Loading size="large"/>
         ): (
           <Fragment>

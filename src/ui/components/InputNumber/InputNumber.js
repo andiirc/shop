@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Button, Card, Title } from 'react-native-paper';
+
 
 export default function InputNumber(props) {
   const {quantity, setQuantity} = props

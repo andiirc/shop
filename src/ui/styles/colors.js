@@ -1,10 +1,7 @@
 const colors = {
-  primary: '#',
+  primary: '#f6f2f5',
   dark: '#772ea2',
-  fontLight: '#',
-  fontDark: '#',
   bgLight: '#dcd6ea',
-  bgDark: '#',
 }
 
 export default colors;

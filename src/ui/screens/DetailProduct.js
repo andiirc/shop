@@ -5,11 +5,8 @@ import StatusBar from '../components/StatusBar';
 import AppBar from '../components/AppBar';
 import { colors, layoutStyles } from '../styles';
 import Loading from '../components/Loading';
-import { Button } from 'react-native-paper';
 import InputNumber from '../components/InputNumber';
 import ButtonBuy from '../components/ButtonBuy';
-
-
 
 
 export default function DetailProduct(props) {

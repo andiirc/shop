@@ -1,19 +1,25 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ToastAndroid } from 'react-native';
 import { Button } from 'react-native-paper';
 import { AddProductsCart  } from '../../../domain/usecases/ProductsAddCartUseCase';
+import { colors } from '../../styles';
+
 
 export default function ButtonBuy(props) {
   const { product, quantity } = props;
 
+  const ShowToas = (message) => ToastAndroid.show(message, ToastAndroid.SHORT);
+
   const buy = async () => {
     const resp = await AddProductsCart(product.id, quantity);
     if(resp === true) {
-      console.log('producto añadido al carrito');
+      ShowToas('product added to cart');
     } else{
-      console.log('error al añadir producto al carrito');
+      ShowToas('error when adding product');
     }
   };
+
+
 
   return (
     <Button style={styles.button} icon="cart" mode="contained" 
@@ -28,5 +34,18 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 10,
     padding: 8
-  }
+  },
+
+  toasContainer: {
+    backgroundColor: colors.dark,
+    borderRadius: 10,
+    padding: 10,
+  },
+
+  text: {
+    color: colors.primary,
+    fontSize: 16,
+    textAlign: 'center',
+  },
+
 });

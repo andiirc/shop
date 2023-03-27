@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useCallback, useEffect} from 'react';
-import { ScrollView, SafeAreaView } from 'react-native';
+import { ScrollView, SafeAreaView} from 'react-native';
 import StatusBar from '../components/StatusBar';  
 import AppBar from '../components/AppBar';
 import { colors, layoutStyles } from '../styles';
@@ -14,6 +14,8 @@ export default function ShoppingCart() {
   const [products, setProducts] = useState(null);
 
   const [loadCar, setLoadCart] = useState(false);
+
+  const [totalPayment, setTotalPayment] = useState(null);
   
   useFocusEffect(
     useCallback(()=> {
@@ -44,7 +46,9 @@ export default function ShoppingCart() {
                   products={products} 
                   setProducts={setProducts}
                   setLoadCart={setLoadCart}
-                /> 
+                  setTotalPayment={setTotalPayment}
+                  totalPayment={totalPayment}
+                />
               </ScrollView>
             </SafeAreaView>
           )

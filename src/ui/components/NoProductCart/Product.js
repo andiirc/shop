@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Image, StyleSheet, Text, View  } from 'react-native';
 import { Chip } from 'react-native-paper';
+import { removeProductsCart } from '../../../domain/usecases/ProductsRemoveCartUseCase';
 import { colors } from '../../styles';
 import InputNumber from '../InputNumber';
 
-
 export default function Product(props) {
-  const { product } = props;
+  const { product, setLoadCart } = props;
 
   const [quantity, setQuantity] = useState(0);
 
@@ -16,6 +16,11 @@ export default function Product(props) {
 
   const totalQuantity = () => {
       setQuantity(product.quantity);
+  }
+
+  const deleteProduct = async() => {
+    const response = await removeProductsCart(product.id)
+    if(response) setLoadCart(true);
   }
 
 
@@ -33,7 +38,7 @@ export default function Product(props) {
             € { product.price * quantity } 
           </Text>
           <View style={styles.btnDelete} >
-            <Chip icon="delete-forever" closeIcon={true} onPress={() => console.log('elimina producto')}>
+            <Chip icon="delete-forever" closeIcon={true} onPress={deleteProduct}>
               Delete
             </Chip>
           </View>

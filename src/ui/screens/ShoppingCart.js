@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useCallback} from 'react';
-import { ScrollView, SafeAreaView, Text } from 'react-native';
+import React, { Fragment, useState, useCallback, useEffect} from 'react';
+import { ScrollView, SafeAreaView } from 'react-native';
 import StatusBar from '../components/StatusBar';  
 import AppBar from '../components/AppBar';
 import { colors, layoutStyles } from '../styles';
@@ -13,16 +13,23 @@ export default function ShoppingCart() {
 
   const [products, setProducts] = useState(null);
 
+  const [loadCar, setLoadCart] = useState(false);
+  
   useFocusEffect(
     useCallback(()=> {
+      setCart(null)
       getCart();
     },[])
   )
 
-const getCart = async () => {
-  const resp = await getProductsCart();
-  setCart(resp);
-}
+  useEffect(() => {
+    loadCar && getCart();
+  }, [loadCar])
+
+  const getCart = async () => {
+    const resp = await getProductsCart();
+    setCart(resp);
+  }
 
   return (
     <Fragment>
@@ -36,6 +43,7 @@ const getCart = async () => {
                   cart={cart} 
                   products={products} 
                   setProducts={setProducts}
+                  setLoadCart={setLoadCart}
                 /> 
               </ScrollView>
             </SafeAreaView>

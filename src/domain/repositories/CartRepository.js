@@ -10,6 +10,10 @@ export default {
     async addProduct(product) {
       const item = await AsyncStorage.setItem(CART, JSON.stringify(product));
       return item;
+    },
+
+    async remove(product) {
+      return await AsyncStorage.setItem(CART, JSON.stringify(product));
     }
   
   };

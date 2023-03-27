@@ -23,7 +23,6 @@ export default function DetailProduct(props) {
   useEffect(()=> {
     (async() => {
       const resp = await getProductById(params.id);
-      console.log(resp);
       setProduct(resp);
       setLoading(false);
     })()

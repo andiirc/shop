@@ -4,7 +4,6 @@ import { Button, Card, Title } from 'react-native-paper';
 
 export default function InputNumber(props) {
   const {quantity, setQuantity} = props
-  // const [number, setNumber] = useState(0);
 
   const handleIncrement = () => {
     setQuantity(quantity + 1);

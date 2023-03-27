@@ -4,7 +4,6 @@ import { Button} from 'react-native-paper';
 
 export default function InputNumber(props) {
   const { product, quantity } = props;
-  console.log(`total es ${product.price} ${quantity}`);
 
   const buy = () => console.log(product.price * quantity);
 

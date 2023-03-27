@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useCallback, useEffect} from 'react';
-import { ScrollView, SafeAreaView} from 'react-native';
+import { ScrollView, SafeAreaView } from 'react-native';
 import StatusBar from '../components/StatusBar';  
 import AppBar from '../components/AppBar';
 import { colors, layoutStyles } from '../styles';

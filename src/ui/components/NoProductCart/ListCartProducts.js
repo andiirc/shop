@@ -6,7 +6,7 @@ import Product  from './Product'
 
 export default function ListCartProducts(props) {
   
-  const { cart, products, setProducts } = props;
+  const { cart, products, setProducts, setLoadCart } = props;
 
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +31,13 @@ export default function ListCartProducts(props) {
         ): (
           <Fragment>
             {
-              products.map((product) => (<Product product={product} key={product.id} />))
+              products.map((product) => (
+                <Product 
+                  product={product} 
+                  key={product.id}  
+                  setLoadCart={setLoadCart}
+                />
+              ))
             }
           </Fragment>
         )
